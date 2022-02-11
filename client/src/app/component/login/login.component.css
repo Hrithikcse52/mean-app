@@ -1,0 +1,23 @@
+/* .login_container {
+    display: flex;
+    justify-content: center;
+}
+.login {
+    height: 90vh;
+    width: 600px;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+}
+.head {
+    text-align: center;
+}
+.pass_input,
+.email_input {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+} */

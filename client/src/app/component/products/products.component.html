@@ -1,0 +1,162 @@
+<div class="">
+  <button
+    (click)="createNav()"
+    type="submit"
+    class="group relative m-5 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  >
+    <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+      <!-- Heroicon name: solid/lock-closed -->
+    </span>
+    Create New Product
+  </button>
+  <div class="flex flex-col">
+    <div class="">
+      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+        <div
+          class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+        >
+          <form [formGroup]="stock">
+            <p-table
+              [value]="products"
+              class="min-w-full divide-y divide-gray-200"
+            >
+              <ng-template pTemplate="header" class="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Price
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Sold
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Avail Stock
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Image
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    AddStock
+                  </th>
+                  <th
+                    scope="col"
+                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Sell
+                  </th>
+                </tr>
+              </ng-template>
+              <ng-template
+                pTemplate="body"
+                let-product
+                class="bg-white divide-y divide-gray-200"
+              >
+                <tr>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="text-sm font-medium text-gray-900">
+                        {{ product.name }}
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      {{ product.price }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      {{ product.sold }}
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                      {{ product.stock - product.sold }}
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10">
+                        <img
+                          class="h-10 w-10 rounded-full"
+                          src="{{ product.image }}"
+                          alt="image"
+                        />
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span
+                      *ngIf="!product.isEdit"
+                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                    >
+                      {{ product.stock - product.sold }}
+                    </span>
+
+                    <input
+                      class="px-2 w-14 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                      *ngIf="product.isEdit"
+                      type="number"
+                      formControlName="stock"
+                    />
+
+                    <button
+                      *ngIf="!product.isEdit; else update"
+                      (click)="edit(product)"
+                      class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800"
+                    >
+                      add
+                    </button>
+                    <ng-template #update>
+                      <button
+                        (click)="updateStock(product)"
+                        class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800"
+                      >
+                        Update
+                      </button>
+                    </ng-template>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <input
+                      class="px-2 w-14 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                      type="number"
+                      formControlName="sold"
+                    />
+                    <button
+                      (click)="updateStock(product)"
+                      class="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-green-800"
+                    >
+                      update
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

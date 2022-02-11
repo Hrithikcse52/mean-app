@@ -1,0 +1,52 @@
+<body>
+  <nav class="bg-gray-800">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center"></div>
+        <div
+          class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start"
+        >
+          <div class="flex-shrink-0 flex items-center">
+            <h1 class="text-white">
+              <a routerLink="/"> LOGO </a>
+            </h1>
+          </div>
+          <div class="sm:block sm:ml-6">
+            <div class="flex space-x-4" *ngIf="authData.code === 200">
+              <a
+                routerLink="/dashboard"
+                routerLinkActive="bg-gray-900"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                aria-current="page"
+                >Dashboard</a
+              >
+              <a
+                routerLink="/product"
+                routerLinkActive="bg-gray-900"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >Product</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+        >
+          <div class="ml-3 relative" *ngIf="authData.code === 200">
+            <div class="flex items-center justify-between">
+              <button
+                type="button"
+                (click)="signOut()"
+                class="bg-teal-900 hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                <p class="text-white">SignOut</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet></router-outlet>
+</body>
