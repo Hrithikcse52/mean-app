@@ -1,21 +1,17 @@
-<div class="max-w-7xl flex min-h-full mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="flex justify-around w-full items-center">
-        <div class="flex flex-col items-center">
-            <label for="p-chart" class="mb-2">Product Stock</label>
-            <p-chart
-                width="300px"
-                type="pie"
-                [data]="data"
-                [options]="chartOptions"
-            ></p-chart>
-        </div>
-        <div class="flex flex-col items-center">
-            <label for="p-chart" class="mb-2">Price</label>
-            <p-chart
-                type="bar"
-                [data]="basicData"
-                [options]="basicOptions"
-            ></p-chart>
-        </div>
+<div class="max-w-7xl flex mx-auto px-2 sm:px-6 lg:px-8">
+  <div class="flex justify-around w-full items-center">
+    <div class="flex flex-col items-center">
+      <label for="p-chart" class="mb-2">Product Stock</label>
+      <p-chart
+        width="300px"
+        type="pie"
+        [data]="data"
+        [options]="chartOptions"
+      ></p-chart>
     </div>
+    <div class="flex flex-col items-center">
+      <label for="p-chart" class="mb-2">Price</label>
+      <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+    </div>
+  </div>
 </div>

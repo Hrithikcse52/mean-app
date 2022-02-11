@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
           console.log('res', res);
         },
         (err) => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/'], { skipLocationChange: true });
           console.log('res', err.error);
         }
       );
@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit {
       });
   }
   createNav() {
-    this.router.navigate(['create']);
+    this.router.navigate(['create'], { skipLocationChange: true });
   }
   edit(product: any) {
     product.isEdit = true;

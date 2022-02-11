@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     this.cookieService.removeAll();
     this.cookie = {};
     this.authData = {};
-    this.router.navigate(['/']);
+    this.router.navigate(['/'], { skipLocationChange: true });
   }
   ngOnInit(): void {
     this.cookie = this.cookieService.get('token');

@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-
 export interface AppConfig {
   inputStyle?: string;
   dark?: boolean;
@@ -31,38 +30,37 @@ export class HomeComponent implements OnInit {
           console.log('res', res);
         },
         (err) => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/'], { skipLocationChange: true });
           console.log('res', err.error);
         }
       );
   }
 
   async getDataList() {
-    return  this.http
+    return this.http
       .get('http://localhost:5000/product/dash', {
         withCredentials: true,
-      }).toPromise()
-      
+      })
+      .toPromise();
   }
   mapData() {
     console.log('map data', this.items);
   }
   async ngOnInit() {
     this.getUser();
-    let result  = await this.getDataList();
-    console.log("ressadsdsd,",result,typeof result)
-    let stockAvail: any[] =[];
-    let stockLable : any[] = [];
-    let stockPrice : any[] = [];
-    Object.entries(result as object).forEach(([key, value]) =>{
-      for(let m in value){
-        console.log("end: ",m)
-        if(m ==="stock") stockAvail.push(value[m])
-        if(m ==="name") stockLable.push(value[m])
-        if(m ==="price") stockPrice.push(value[m])
-        
+    let result = await this.getDataList();
+    console.log('ressadsdsd,', result, typeof result);
+    let stockAvail: any[] = [];
+    let stockLable: any[] = [];
+    let stockPrice: any[] = [];
+    Object.entries(result as object).forEach(([key, value]) => {
+      for (let m in value) {
+        console.log('end: ', m);
+        if (m === 'stock') stockAvail.push(value[m]);
+        if (m === 'name') stockLable.push(value[m]);
+        if (m === 'price') stockPrice.push(value[m]);
       }
-    })
+    });
     this.data = {
       labels: stockLable,
       datasets: [
@@ -80,8 +78,7 @@ export class HomeComponent implements OnInit {
         {
           label: 'Price DB',
           backgroundColor: '#42A5F5',
-          data: stockPrice
-          
+          data: stockPrice,
         },
       ],
     };
